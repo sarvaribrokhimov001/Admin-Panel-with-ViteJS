@@ -55,10 +55,10 @@ const EditModal = ({setEditModal , editId}) => {
     <div>
         <form onSubmit={handleSubmit}>
             <input value={formData?.name} onChange={handleChange} type="text" placeholder='write product name' name='name' />
-            <input value={formData?.name} onChange={handleChange} type="number" placeholder='write product price' name='price' />
-            <input value={formData?.name} onChange={handleChange} type="text" placeholder='write product category' name='category' />
-            <input value={formData?.name} onChange={handleChange} type="url" placeholder='upload product image' name='image' />
-            <input value={formData?.name} onChange={handleChange} type="text" placeholder='write product description' name='description' />
+            <input value={formData?.price} onChange={handleChange} type="number" placeholder='write product price' name='price' />
+            <input value={formData?.category} onChange={handleChange} type="text" placeholder='write product category' name='category' />
+            <input value={formData?.image} onChange={handleChange} type="url" placeholder='upload product image' name='image' />
+            <input value={formData?.description} onChange={handleChange} type="text" placeholder='write product description' name='description' />
 
             <div>
                 <button> Submit </button>
