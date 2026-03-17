@@ -1,9 +1,8 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { data } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import "../styles/EditModal.css";
 
 const EditModal = ({setEditModal , editId}) => {
-
     const [formData , setFormData] = useState({
       id: editId,
       name: "",
@@ -13,11 +12,8 @@ const EditModal = ({setEditModal , editId}) => {
       description: ""
     });
 
-
     useEffect(() => {
-       axios
-       .get(`http://localhost:3001/Products/${editId}`)
-       .then((data) => {
+       axios.get(`http://localhost:3001/Products/${editId}`).then((data) => {
         const response = data?.data;
 
         setFormData({
@@ -28,11 +24,8 @@ const EditModal = ({setEditModal , editId}) => {
             description: response?.description
         })
         console.log(response);
-        
        });
-    } , [editId])
-
-
+    } , [editId]);
 
     const handleChange = (e) => {
         setFormData({
@@ -44,25 +37,23 @@ const EditModal = ({setEditModal , editId}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        axios
-        .put(`http://localhost:3001/Products/${editId}` , formData)
-        .then((data) => {
+        axios.put(`http://localhost:3001/Products/${editId}` , formData).then((data) => {
             console.log(data); 
         });
     }
 
   return (
-    <div>
-        <form onSubmit={handleSubmit}>
+    <div className='edit__modal__container'>
+        <form className='edit__modal__inputs' onSubmit={handleSubmit}>
             <input value={formData?.name} onChange={handleChange} type="text" placeholder='write product name' name='name' />
             <input value={formData?.price} onChange={handleChange} type="number" placeholder='write product price' name='price' />
             <input value={formData?.category} onChange={handleChange} type="text" placeholder='write product category' name='category' />
             <input value={formData?.image} onChange={handleChange} type="url" placeholder='upload product image' name='image' />
             <input value={formData?.description} onChange={handleChange} type="text" placeholder='write product description' name='description' />
 
-            <div>
-                <button> Submit </button>
-                <button onClick={() => {
+            <div className='edit__modal__buttons__container'>
+                <button className='edit__modal__submit__btn'> Submit </button>
+                <button className='edit__modal__cancel__btn' onClick={() => {
                     setEditModal(false);
                 }}> Cancel </button>
             </div>
